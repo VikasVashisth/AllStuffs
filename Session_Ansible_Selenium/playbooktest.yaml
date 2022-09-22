@@ -1,0 +1,15 @@
+# command to execute : ansible-playbook playbooktest.yaml [go to the directory where file is present]
+# change the homes path as per the path
+---
+- name: "Playing with Ansible and Selenium"
+  hosts: localhost
+  vars:
+    homes: "/home/knoldus/To_Do_Works/Study Material/DevOps/Session - Ansible and Selenium/Session_Ansible_Selenium"
+  connection: local 
+  tasks:
+    - name: This command will change the working directory to that Directory where the Selenium Script is present to run
+      shell: mvn compile test
+      register: "output"
+      args:
+        chdir: "{{ homes }}"
+    - debug: var=output.stdout_lines
